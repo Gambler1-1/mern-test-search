@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./styles2.css";
+import "./styles.css";
 import Multiselect from "multiselect-react-dropdown";
-import SearchFilter from "./Components/SearchFilter";
+import SearchFilter from "./components/SearchFilter";
 
 var data = require("./data.json");
 
