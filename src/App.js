@@ -17,7 +17,6 @@ const ratingOptions = [
   "9 ★★★★★★★★★☆",
   "10 ★★★★★★★★★★",
 ];
-
 const genreOptions = ["Action", "Thriller", "Drama", "Comedy"];
 
 export default function App() {
