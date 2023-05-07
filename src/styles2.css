@@ -1,57 +1,74 @@
 .App {
-    font-family: sans-serif;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .filter {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .multiselect-container {
-    margin-right: 10px;
-    min-width: 225px;
-    display: inline-block;
-    vertical-align: top;
-    margin-right: 20px;
-  }
+  font-family: sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.filter {
+  display: flex;
+  flex-direction: row;
+}
 
- 
-  .search-inner{
-    display: flex;
-    height: 30px;
-    width: 500px;
-  }
+.multiselect-container {
+  margin-right: 10px;
+  min-width: 225px;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px;
+}
 
- .search-inner>input{
-    width: 100%;
-  }
+.search-inner {
+  display: flex;
+  height: 30px;
+  width: 500px;
+}
 
+.search-inner > input {
+  width: 100%;
+}
 
-  .dropdownSearch {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid gray;
-  }
-  .dropdownSearch:empty {
-    border: none;
-  }
-  .searchDropdown-row{
-    cursor: pointer;
-    text-align: start;
-    margin: 2px 0;
-  }
+.dropdownSearch {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+}
+.dropdownSearch:empty {
+  border: none;
+}
+.searchDropdown-row {
+  cursor: pointer;
+  text-align: start;
+  margin: 2px 0;
+}
 
-  .searchWrapper2{
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    min-height: 22px;
-    padding: 5px;
-    position: relative;
-    min-width: 400px;
-  }
+.searchWrapper2 {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-height: 22px;
+  padding: 5px;
+  position: relative;
+  min-width: 400px;
+}
 
-  
+.movie-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.movie-title {
+  flex-grow: 1;
+  text-align: start;
+}
+
+.movie-category {
+  margin-left: 10px;
+  text-align: end;
+  color: grey;
+}
+
+.movie-rating {
+  margin-left: auto;
+}
