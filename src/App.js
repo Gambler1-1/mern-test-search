@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./styles2.css";
 import Multiselect from "multiselect-react-dropdown";
+import GetStarsRating from "./Components/GetStarsRating";
 
 var data = require("./data.json");
 
@@ -51,19 +52,6 @@ export default function App() {
     e.length > 0 ? setSelectedGenre(e) : setSelectedGenre([]);
   };
 
-  function getStarRating(rating) {
-    const roundedRating = Math.round(rating * 2) / 2; 
-    const fullStars = Math.floor(roundedRating);
-    const halfStar = roundedRating % 1 !== 0 ? "half" : "";
-    const emptyStars = 5 - fullStars - (halfStar === "half" ? 1 : 0);
-
-    const fullStarStr = fullStars > 0 ? "★".repeat(fullStars) : "";
-    const halfStarStr = halfStar === "half" ? "✬" : "";
-    const emptyStarStr = emptyStars > 0 ? "☆".repeat(emptyStars) : "";
-
-    return `${fullStarStr}${halfStarStr}${emptyStarStr}`;
-  }
-
   return (
     <div className="App">
       <h1>Search Movies</h1>
@@ -106,7 +94,7 @@ export default function App() {
                       <span className="movie-category">{movie.category}</span>
                     </div>
                     <span className="movie-rating">
-                      {getStarRating(movie.rating)}
+                    <GetStarsRating rating={movie.rating}/>
                     </span>
                   </div>
                 ))}
