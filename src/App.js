@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./styles.css";
 import Multiselect from "multiselect-react-dropdown";
-import SearchFilter from "./components/SearchFilter";
+import SearchFilter from "./Components/SearchFilter";
 
 var data = require("./data.json");
 
@@ -61,7 +61,7 @@ export default function App() {
         <div className="filter">
           <div className="multiselect-container">
             <div className="search-inner">
-              <input type="text" placeholder="Search for Movies" value={value} onChange={onSearchChange} />
+              <input type="text" placeholder="Search for Movies" value={value} onClick={()=>{console.log("CLICKED")}} onChange={onSearchChange} />
             </div>
             <div className="dropdownSearch">
               <SearchFilter movies={movies} value={value} selectedGenre={selectedGenre} selectedRating={selectedRating}  />
@@ -69,7 +69,6 @@ export default function App() {
           </div>
           <div className="multiselect-container">
             <Multiselect
-              style={{ width: "200px" }}
               isObject={false}
               options={ratingOptions}
               showCheckbox

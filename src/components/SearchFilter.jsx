@@ -18,8 +18,6 @@ const SearchFilter = (props) => {
           rating < parseFloat(selectedRating) + 1))
     );
   });
-  console.log(filteredMovies);
-
   return (
     <>
       {filteredMovies.length > 0 && (
