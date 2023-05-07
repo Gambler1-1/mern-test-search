@@ -15,7 +15,7 @@
   min-width: 225px;
   display: inline-block;
   vertical-align: top;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .search-inner {
@@ -30,7 +30,7 @@
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 4px;
-    min-height: 22px;
+    min-height: 20px;
     padding: 5px;
     position: relative;
 
@@ -52,6 +52,9 @@
   text-align: start;
   margin: 2px 0;
   padding-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
 }
 
 .searchDropdown-row:hover  {

@@ -23,16 +23,19 @@ const genreOptions = ["Action", "Thriller", "Drama", "Comedy"];
 export default function App() {
   const movies = data.movies;
   const [value, setValue] = useState("");
+  const [searchClicked, setSearchClicked] = useState(false);
   const [selectedGenre, setSelectedGenre] = useState([]);
   const [selectedRating, setSelectedRating] = useState([]);
 
+  const handleSearchClick = async()=>{
+    setSearchClicked(!searchClicked)
+  }
   const onSearchChange = (event) => {
     console.log(event.target.value, "SEARCHED VALUE");
     console.log(selectedGenre, "SELECTED GENRE");
     console.log(selectedRating, "SELECTED RATING");
     setValue(event.target.value);
   };
-
   const updateRating = (e) => {
     let strLen = e.length;
     if (strLen < 1) {
@@ -61,10 +64,10 @@ export default function App() {
         <div className="filter">
           <div className="multiselect-container">
             <div className="search-inner">
-              <input type="text" placeholder="Search for Movies" value={value} onClick={()=>{console.log("CLICKED")}} onChange={onSearchChange} />
+              <input type="text" placeholder="Search for Movies" value={value} onClick={handleSearchClick} onChange={onSearchChange} />
             </div>
             <div className="dropdownSearch">
-              <SearchFilter movies={movies} value={value} selectedGenre={selectedGenre} selectedRating={selectedRating}  />
+              <SearchFilter  movies={movies} value={value} selectedGenre={selectedGenre} selectedRating={selectedRating} searchClicked={searchClicked}  />
             </div>
           </div>
           <div className="multiselect-container">
@@ -72,7 +75,7 @@ export default function App() {
               isObject={false}
               options={ratingOptions}
               showCheckbox
-              placeholder={"Select Rating     ↓"}
+              placeholder={"Select Rating ↓"}
               onRemove={(e) => {
                 updateRating(e);
               }}
