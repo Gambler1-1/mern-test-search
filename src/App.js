@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./styles2.css";
 import Multiselect from "multiselect-react-dropdown";
-import GetStarsRating from "./Components/GetStarsRating";
+import GetStarsRating from "./components/GetStarsRating";
 
 var data = require("./data.json");
 
