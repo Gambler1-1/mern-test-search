@@ -52,7 +52,7 @@ export default function App() {
   };
 
   function getStarRating(rating) {
-    const roundedRating = Math.round(rating * 2) / 2; // round to nearest 0.5
+    const roundedRating = Math.round(rating * 2) / 2; 
     const fullStars = Math.floor(roundedRating);
     const halfStar = roundedRating % 1 !== 0 ? "half" : "";
     const emptyStars = 5 - fullStars - (halfStar === "half" ? 1 : 0);
