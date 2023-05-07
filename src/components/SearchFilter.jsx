@@ -1,15 +1,18 @@
 import React from "react";
-import GetStarsRating from "./GetStarsRating";
+import Movie from "./Movie";
 
 const SearchFilter = (props) => {
-  const { value, movies, selectedGenre, selectedRating,searchClicked } = props;
- 
-  const filteredMovies =movies.filter((movie) => {
+  const { value, movies, selectedGenre, selectedRating, searchClicked } = props;
+  console.log(selectedGenre, "GENRE");
+  console.log(selectedGenre.length, "GENRE Length");
+  console.log(movies, "MOVIES");
+
+  const filteredMovies = movies.filter((movie) => {
     const searchTerm = value.toLowerCase();
     const title = movie.title.toLowerCase();
     const category = movie.category;
     const rating = movie.rating;
-    return ( 
+    return (
       searchTerm &&
       title.includes(searchTerm) &&
       (selectedGenre.length === 0 || selectedGenre.includes(category)) &&
@@ -19,43 +22,52 @@ const SearchFilter = (props) => {
     );
   });
 
-  if ((value === null || value === undefined || value === '') && searchClicked === true){
+  if (searchClicked) {
+    let filteredMovies = movies;
+  
+    if (selectedGenre.length > 0) {
+      filteredMovies = filteredMovies.filter(movie => selectedGenre.includes(movie.category));
+    }
+  
+    if (selectedRating.length > 0) {
+      const minRating = parseFloat(selectedRating);
+      const maxRating = minRating + 1;
+  
+      filteredMovies = filteredMovies.filter(movie => {
+        const rating = parseFloat(movie.rating);
+        return rating >= minRating && rating < maxRating;
+      });
+    }
+  
+    if (selectedGenre.length > 0 && selectedRating.length > 0) {
+      const minRating = parseFloat(selectedRating);
+    const maxRating = minRating + 1;
+      filteredMovies = filteredMovies.filter(movie => {
+        const category = movie.category;
+        const rating = parseFloat(movie.rating);
+        return selectedGenre.includes(category) && rating >= minRating && rating < maxRating;
+      });
+    }
+  
+    if (filteredMovies.length === 0 && (!value || value === "")) {
+      return <div>No movies found.</div>;
+    }
+  
     return (
-      <>
-        {movies.length > 0 && (
-          <div> 
-            {movies.slice(0, 10).map((movie) => (
-              <div className="searchDropdown-row" key={movie.movieId}>
-                <div className="movie-info">
-                  <span className="movie-title">{movie.title}</span>
-                  <span className="movie-category">{movie.category}</span>
-                </div>
-                <span className="movie-rating">
-                  <GetStarsRating  rating={movie.rating}/>
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
-      </>
+      <div>
+        {filteredMovies.map(movie => (
+          <Movie movie={movie} key={movie.id} />
+        ))}
+      </div>
     );
   }
 
-  
   return (
     <>
       {filteredMovies.length > 0 && (
-        <div> 
-          {filteredMovies.slice(0, 10).map((movie) => (
-            <div className="searchDropdown-row" key={movie.movieId}>
-              <div className="movie-info">
-                <span className="movie-title">{movie.title}</span>
-                <span className="movie-category">{movie.category}</span>
-              </div>
-              <span className="movie-rating">
-                <GetStarsRating  rating={movie.rating}/>
-              </span>
-            </div>
+        <div>
+          {filteredMovies.map((movie) => (
+            <Movie movie={movie} />
           ))}
         </div>
       )}
