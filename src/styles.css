@@ -1,77 +1,70 @@
 .App {
-  font-family: sans-serif;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.filter {
-  display: flex;
-  flex-direction: row;
-}
+    font-family: sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .search-container {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dropdown {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid gray;
+  }
+  
+  .dropdown:empty {
+    border: none;
+  }
+  
+  .dropdown-row {
+    cursor: pointer;
+    text-align: start;
+    margin: 2px 0;
+  }
+  
+  input {
+    width: 220px;
+  }
+  
+  .search-inner {
+    display: flex;
+  }
 
-.multiselect-container {
-  margin-right: 10px;
-  min-width: 225px;
-  display: inline-block;
-  vertical-align: top;
-  margin-right: 20px;
-}
-
-.search-inner {
-  display: flex;
-  height: 30px;
-  width: 500px;
-}
-
-.search-inner > input {
-  width: 100%;
-}
-
-.dropdownSearch {
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid gray;
-}
-.dropdownSearch:empty {
-  border: none;
-}
-.searchDropdown-row {
-  cursor: pointer;
-  text-align: start;
-  margin: 2px 0;
-  margin-left: 20px;
-}
-
-.searchWrapper2 {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  min-height: 22px;
-  padding: 5px;
-  position: relative;
-  min-width: 400px;
-}
-
-.movie-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.movie-title {
-  flex-grow: 1;
-  text-align: start;
-}
-
-.movie-category {
-  margin-left: 10px;
-  margin-right: 20px;
-
-  text-align: end;
-  color: grey;
-}
-
-.movie-rating {
-  margin-left: auto;
-}
+  .dropdown-select {
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #444;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+  }
+  
+  .dropdown-select:focus,
+  .dropdown-select:hover {
+    border-color: #0077cc;
+  }
+  
+  .dropdown-select option {
+    font-size: 16px;
+    background-color: #fff;
+    color: #444;
+  }
+  
+  .dropdown-select option:hover {
+    background-color: #0077cc;
+    color: #fff;
+  }
+  
+  

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./styles.css";
+import "./styles2.css";
 import Multiselect from "multiselect-react-dropdown";
-import SearchFilter from "./components/SearchFilter"
+import SearchFilter from "./Components/SearchFilter";
 
 var data = require("./data.json");
 
@@ -17,6 +17,7 @@ const ratingOptions = [
   "9 ★★★★★★★★★☆",
   "10 ★★★★★★★★★★",
 ];
+
 const genreOptions = ["Action", "Thriller", "Drama", "Comedy"];
 
 export default function App() {
