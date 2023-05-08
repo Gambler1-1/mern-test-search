@@ -23,17 +23,21 @@ const genreOptions = ["Action", "Thriller", "Drama", "Comedy"];
 export default function App() {
   const movies = data.movies;
   const [value, setValue] = useState("");
-  const [searchClicked, setSearchClicked] = useState(false);
+  const [searchClicked, setSearchClicked] = useState(0);
+  const [searched, setSearched] = useState(0);
   const [selectedGenre, setSelectedGenre] = useState([]);
   const [selectedRating, setSelectedRating] = useState([]);
 
-  const handleSearchClick = async()=>{
-    setSearchClicked(!searchClicked)
-  }
+  const handleSearchClick = async () => {
+    searchClicked > 0
+      ? setSearchClicked(0)
+      : setSearchClicked(searchClicked + 1);
+  };
   const onSearchChange = (event) => {
-    console.log(event.target.value, "SEARCHED VALUE");
-    console.log(selectedGenre, "SELECTED GENRE");
-    console.log(selectedRating, "SELECTED RATING");
+    if(event.target.value.length > 0){
+      setSearched(searched+1)
+      setSearchClicked(0)
+    }
     setValue(event.target.value);
   };
   const updateRating = (e) => {
@@ -42,32 +46,60 @@ export default function App() {
       setSelectedRating([]);
       return;
     }
-    let ratnum = e[0].split(" ")[0];
-    let ratNumArray = [];
-    ratNumArray.push(ratnum);
+    var ratNumArray=[]
+    for(let i=0 ; i<e.length; i++){
+      ratNumArray.push(e[i].split(" ")[0])
+    }
+
     setSelectedRating(ratNumArray);
+
+    if (searchClicked > 0) {
+      setSearchClicked(searchClicked + 1);
+    }
+    if (searched > 0) {
+      setSearched(searched + 1);
+    }
   };
 
   const updateGenre = (e) => {
-  console.log(selectedGenre,"CURRENTLY SELECTED GENRE")
-    if(e.length < 1  ){
+    if (e.length < 1) {
       setSelectedGenre([]);
       return;
     }
-    setSelectedGenre(e)
+    setSelectedGenre(e);
+    if (searchClicked > 0) {
+      setSearchClicked(searchClicked + 1);
+    }
+    if (searched > 0) {
+      setSearched(searched + 1);
+    }
   };
 
+  
   return (
-  <>
-    <div className="App">
-      <h1>Search Movies</h1>
+    <>
+      <div className="App">
+        <h1>Search Movies</h1>
         <div className="filter">
           <div className="multiselect-container">
             <div className="search-inner">
-              <input type="text" placeholder="Search for Movies" value={value} onClick={handleSearchClick} onChange={onSearchChange} />
+              <input
+                type="text"
+                placeholder="Search for Movies"
+                value={value}
+                onClick={handleSearchClick}
+                onChange={onSearchChange}
+              />
             </div>
             <div className="dropdownSearch">
-              <SearchFilter  movies={movies} value={value} selectedGenre={selectedGenre} selectedRating={selectedRating} searchClicked={searchClicked}  />
+              <SearchFilter
+                movies={movies}
+                value={value}
+                selectedGenre={selectedGenre}
+                selectedRating={selectedRating}
+                searchClicked={searchClicked}
+                searched={searched}
+              />
             </div>
           </div>
           <div className="multiselect-container">
@@ -75,7 +107,7 @@ export default function App() {
               isObject={false}
               options={ratingOptions}
               showCheckbox
-              placeholder={"Select Rating ↓"}
+              placeholder={"Select Rating : Default:All ↓"}
               onRemove={(e) => {
                 updateRating(e);
               }}
@@ -89,7 +121,7 @@ export default function App() {
               isObject={false}
               options={genreOptions}
               showCheckbox
-              placeholder={"Select Genre      ↓"}
+              placeholder={"Select Genre : Default:All  ↓"}
               onRemove={(e) => {
                 updateGenre(e);
               }}
@@ -98,8 +130,8 @@ export default function App() {
               }}
             />
           </div>
-        </div> 
-    </div>
+        </div>
+      </div>
     </>
   );
 }
